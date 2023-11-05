@@ -1,0 +1,24 @@
+IMPLEMENTATION:
+
+This code implements a simple smart ELF loader that loads and runs an ELF executable. Here's how it works:
+
+loader_cleanup Function: 
+This function is responsible for releasing memory and cleaning up resources. It frees the allocated memory for the ELF header and program header table. If a valid PT_LOAD segment was found (temp >= 0), it also calls munmap to unmap the loaded memory.
+
+load_and_run_elf Function: 
+It basically loads the elf header and type cast the entry point address in order to call the _start function
+It creates a segmentation fault which is handled in the handler.
+
+segfault handler:
+First it checks if the faulting address is virtual or physical, if it's virtual then it's passed ahead as it is but if it's physical then correspoding virtua address is passed ahead
+The segment containing the faulting address is searched and then corresponding pages are alloted
+After typecasting the new address to start the execution from, it is passed to  EIP register to continue the execution.
+
+In the end, necessary information is displayed
+
+
+CONTRIBUTIONS:
+We together wrote the code with equal amount of inputs from each member while writing and debugging
+
+Git-link: https://github.com/weebsuryansh/OS_Assignment_4.git
+
